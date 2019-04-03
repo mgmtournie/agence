@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE xsl:stylesheet [ <!ENTITY times "&#8855;"> ]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>pied de page</title>
+	<link rel="stylesheet" href="style.css"></link>
+</h:head>
+<h:body>
+	<ui:composition>
+
+		<div style="background-color: blue">
+			<p:panelGrid columns="3" layout="grid">
+				<h:outputText value="Avec l'agence Paul'insclusive " />
+				<h:outputText value="Services clients" />
+				<h:outputText value="Infos pratiques" />
+
+
+				<h:outputText
+					value="vous n'avez qu'a choisir la couleur de vos vacances" />
+				<h:outputText value="Rejoingnez nous" />
+				<h:outputText value="Paiement 100% sécurisé" />
+
+
+				<h:outputText
+					value=" Pour votre voyage l'agence Paul'inclusive s'occupe de tout" />
+				<h:graphicImage value="/resources/images/facebook.png"
+					style="width: 25px; height: 25px;
+  display:block;" />
+				<h:graphicImage value="/resources/images/cadenas.jpg"
+					style="width: 25px; height: 25px;
+  display:block;" />
+
+			</p:panelGrid>
+		</div>
+	</ui:composition>
+</h:body>
+</html>

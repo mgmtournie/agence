@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE xsl:stylesheet [ <!ENTITY times "&#8855;"> ]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui" xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>Agence de Voyage</title>
+</h:head>
+<h:body bgcolor="white">
+
+	<ui:decorate template="/WEB-INF/templates/BasicTemplate.xhtml">
+		<ui:define name="content">
+
+
+			<center>
+				<div style="margin-top: 1.5; background-color: #F39C12">
+
+					<h:outputText style="font-size: 200px" value=" Bienvenue !" />
+
+				</div>
+			</center>
+			<p:separator />
+
+			<div>
+
+				<h:graphicImage value="/resources/images/acc.jpg" style="width:100%" />
+
+
+			</div>
+
+			<p:separator />
+			<div style="margin-top: 1.5; background-color: #F39C12">
+				<h:outputText style="font-size: 22px "
+					value=" Que ce soit une date de départ privilégiée, un itinéraire précis en tête, un hôtel dont vous rêvez, 
+				la préférence exprimée pour une compagnie aérienne…" />
+				<br /> <br />
+				<h:outputText style="font-size: 22px "
+					value=" Que ce soit un voyage à deux, en famille, entre amis…" />
+
+				<br /> <br />
+				<h:outputText style="font-size: 22px "
+					value="Quel que soit l’esprit de votre voyage : aventure, farniente, prestige, solidaire, grands espaces, histoire, escapade. " />
+				<br /> <br />
+				<h:outputText style="font-size: 22px "
+					value="Nous mettons tout en œuvre pour créer votre voyage idéal en répondant le plus précisément possible à vos besoins et
+				à vos souhaits spécifiques ou au plus près de vos attentes en toute transparence. " />
+				<br /> <br />
+				<h:outputText style="font-size: 22px"
+					value=" Nous sommes entièrement à votre service pour que votre rêve de voyage sur mesure devienne réalité !" />
+
+			</div>
+			<p:separator />
+			
+			<center>
+			<div >
+
+
+				<p:galleria value="#{imagesView.images}" var="image"
+					panelWidth="1300" panelHeight="800" showCaption="false">
+					<p:graphicImage name="images/#{image}" width="100%" height="100%"
+						/>
+				</p:galleria>
+
+			</div>
+			</center>
+		</ui:define>
+	</ui:decorate>
+</h:body>
+
+</html>

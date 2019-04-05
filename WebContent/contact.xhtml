@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE xsl:stylesheet [ <!ENTITY times "&#8855;"> ]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+<h:head>
+<link rel="stylesheet" href="style.css">
+</link>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>contact</title>
+</h:head>
+<h:body>
+    <ui:decorate template="/WEB-INF/templates/BasicTemplate.xhtml">
+        <ui:define name="content">
+        <center>
+<h:form>
+    
+  <div style="background-color: #F7CAC9">
+     <h:outputText style="font-size: 70px" value=" Formulaire de Contact" />
+ </div>
+        <h:panelGrid id="grid" columns="4" cellpadding="5">
+            <h:outputLabel for="name" value="Nom :" style="font-weight:bold"/>
+            <p:inputText id="name" value="#{validationView.text}" required="true" label="Name"/>
+            <p:message for="name" />
+            <h:outputText value="#{validationView.text}" />
+            
+            <h:outputLabel for="prenom" value="Prénom :" style="font-weight:bold"/>
+            <p:inputText id="prenom" value="#{validationView.text}" required="true" label="prenom"/>
+            <p:message for="prenom" />
+            <h:outputText value="#{validationView.text}" />
+            
+            <h:outputLabel for="number" value="Telephone :" style="font-weight:bold"/>
+            <p:inputText id="number" value="#{validationView.integer}" label="Number">
+              
+            </p:inputText>
+            <p:message for="number" />
+            <h:outputText value="#{validationView.integer}" />
+ 
+<h:outputLabel for="email" value="Email : " style="font-weight:bold"/>
+            <p:inputText id="email" value="#{validationView.email}" />
+            <p:message for="email" display="tooltip" />
+            <h:outputText value="#{validationView.email}" />
+ 
+            <h:outputLabel for="desc" value="Message :" style="font-weight:bold"/>
+            <p:inputTextarea id="desc" value="#{validationView.description}" required="true" label="Description">
+                <f:validateLength minimum="3" maximum="10" />
+            </p:inputTextarea>
+            <p:message for="desc" />
+            <h:outputText value="#{validationView.description}" />
+    
+   <center> <p:commandButton value="Envoyer" action="result" /> </center>
+</h:panelGrid>
+<marquee direction="right"><h3>Contactez nous !!! Nous vous répondrons le plus rapidement possible !</h3></marquee>
+<marquee direction="left"><h3>L'agence est ouverte du lundi au samedi de 9h à 18h !</h3></marquee>
+</h:form>
+</center>
+</ui:define>
+</ui:decorate>
+</h:body>
+</html>

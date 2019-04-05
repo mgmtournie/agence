@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE xsl:stylesheet [ <!ENTITY times "&#8855;"> ]>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>reservation</title>
+</h:head>
+<h:body >
+
+	<ui:decorate template="/WEB-INF/templates/BasicTemplate.xhtml">
+		<ui:define name="content">
+		<center>
+		<div style="background-color: #F7CAC9">
+			 <h:outputText style="font-size: 70px" value=" Reservation" />
+		</div>	
+		</center>
+			<h:form id="formReservation"  >
+				<p:tabView orientation="left" itemstyle="background-color: #D7E6BB">
+					<p:tab title="Canada" >
+
+
+						<p:carousel value="#{carouselView.hotelsCa}"
+							headerText="Hotels Canadiens" var="hotelsCa"
+							itemStyle="text-align:center" responsive="false" style="background-color: #D7E6BB">
+							<p:panelGrid columns="2" style="width:100% ;margin:10px 0px"
+								columnClasses="label,value" layout="grid"
+								styleClass="ui-panelgrid-blank">
+
+								<f:facet name="header">
+									<p:graphicImage name="images/#{hotelsCa.nuitee}Ca.jpg"
+										width="250px" height="300px" />
+								</f:facet>
+
+								<h:outputText value="Nom:" />
+								<h:outputText value="#{hotelsCa.nomHotel}" />
+
+								<h:outputText value="Etoiles" />
+								<h:outputText value="#{hotelsCa.etoile}" />
+									
+								<h:outputText value="   " />	
+								<p:commandButton update=":formReservation"
+									action="#{carouselView.bingo()}" value='Voir les details'
+									oncomplete="PF('hotelCaDialog').show()">
+									<f:setPropertyActionListener value="#{hotelsCa}"
+										target="#{carouselView.selectedHotelCa}" />
+
+								</p:commandButton>
+
+							</p:panelGrid>
+						</p:carousel>
+
+
+						<p:dialog header="Hotel Info" widgetVar="hotelCaDialog"
+							id="hotelCaDialog" modal="true" showEffect="fade"
+							hideEffect="fade" resizable="true" height="200">
+							<p:outputPanel id="hotelCaDetail" style="text-align:center;">
+								<p:panelGrid columns="2" columnClasses="label,value">
+
+									<h:outputText value="Nom:" />
+									<h:outputText value="#{carouselView.selectedHotelCa.nomHotel}" />
+
+									<h:outputText value="Nuitée" />
+									<h:outputText value="#{carouselView.selectedHotelCa.nuitee}€" />
+
+									<p:outputLabel for="range" value="Range Selection:" />
+									<p:datePicker id="range" selectionMode="range"
+										value="#{calendarView.range}" readonlyInput="true" />
+
+
+
+
+
+								</p:panelGrid>
+
+								<p:commandButton value="Reserver" action="reserv" />
+								<script type="text/javascript">
+    //<![CDATA[
+    function dateTemplateFunc(date) {
+        return '<span style="background-color:' + ((date.day < 21 && date.day > 10) ? '#81C784' : 'inherit') + ';border-radius:50%;padding: .25em;width: 1.75em; height:1.75em; display:block;">' + date.day + '</span>';
+    }
+    //]]>
+</script>
+
+							</p:outputPanel>
+						</p:dialog>
+
+					</p:tab>
+
+
+
+
+
+
+					<p:tab title="Mexique">
+
+						<p:carousel value="#{carouselView.hotelsMex}"
+							headerText="Hotels Mexicains" var="hotelsMex"
+							itemStyle="text-align:center" responsive="true"  style="background-color: #D7E6BB">
+							<p:panelGrid columns="2" style="width:100%;margin:10px 0px  "
+								columnClasses="label,value" layout="grid"
+								styleClass="ui-panelgrid-blank">
+
+								<f:facet name="header">
+									<p:graphicImage name="images/#{hotelsMex.nuitee}Mex.jpg"
+										width="250px" height="300px" />
+								</f:facet>
+								<h:outputText value="Nom: " />
+								<h:outputText value="#{hotelsMex.nomHotel}" />
+
+								<h:outputText value="Etoiles: " />
+								<h:outputText value="#{hotelsMex.etoile}" />
+
+								<h:outputText value="   " />	
+								<p:commandButton update=":formReservation"
+									action="#{carouselView.bingoMex()}" value='Voir les details'
+									oncomplete="PF('hotelMexDialog').show()">
+									<f:setPropertyActionListener value="#{hotelsMex}"
+										target="#{carouselView.selectedHotelMex}" />
+
+								</p:commandButton>
+
+
+							</p:panelGrid>
+
+						</p:carousel>
+
+
+						<p:dialog header="Hotel Mexicain Info" widgetVar="hotelMexDialog"
+							id="hotelMexDialog" modal="true" showEffect="fade"
+							hideEffect="fade" resizable="true" height="200">
+							<p:outputPanel id="hotelMexDetail" style="text-align:center;">
+								<p:panelGrid columns="2" columnClasses="label,value">
+
+
+									<h:outputText value="Nom:" />
+									<h:outputText value="#{carouselView.selectedHotelMex.nomHotel}" />
+
+									<h:outputText value="Year" />
+									<h:outputText value="#{carouselView.selectedHotelMex.nuitee}€" />
+
+									<p:outputLabel for="rangeMex" value="Range Selection:" />
+									<p:datePicker id="rangeMex" selectionMode="range"
+										value="#{calendarView.range}" readonlyInput="true" />
+
+								</p:panelGrid>
+								<p:commandButton value="Reserver" action="reserv" />
+							</p:outputPanel>
+						</p:dialog>
+
+					</p:tab>
+					
+					
+					
+					
+					
+					<p:tab title="Thailande">
+						<p:carousel value="#{carouselView.hotelsTha}"
+							headerText="Hotel Thailandais" var="hotelsTha"
+							itemStyle="text-align:center" responsive="true"  style="background-color: #D7E6BB">
+							<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
+								columnClasses="label,value" layout="grid"
+								styleClass="ui-panelgrid-blank">
+
+								<f:facet name="header">
+									<p:graphicImage name="images/#{hotelsTha.nuitee}Tha.jpg"
+										width="250px" height="300px" />
+								</f:facet>
+								<h:outputText value="Nom: " />
+								<h:outputText value="#{hotelsTha.nomHotel}" />
+
+								<h:outputText value="Etoiles: " />
+								<h:outputText value="#{hotelsTha.etoile}" />
+								
+								<h:outputText value="   " />	
+								<p:commandButton update=":formReservation"
+									action="#{carouselView.bingoTha()}" value='Voir les details'
+									oncomplete="PF('hotelThaDialog').show()">
+									<f:setPropertyActionListener value="#{hotelsTha}"
+										target="#{carouselView.selectedHotelTha}" />
+								</p:commandButton>
+
+
+							</p:panelGrid>
+
+						</p:carousel>
+
+
+						<p:dialog header="Hotel Thailandais Info"
+							widgetVar="hotelThaDialog" id="hotelThaDialog" modal="true"
+							showEffect="fade" hideEffect="fade" resizable="true" height="200">
+							<p:outputPanel id="hotelThaDetail" style="text-align:center;">
+								<p:panelGrid columns="2" columnClasses="label,value">
+
+
+									<h:outputText value="Nom:" />
+									<h:outputText value="#{carouselView.selectedHotelTha.nomHotel}" />
+
+									<h:outputText value="Year" />
+									<h:outputText value="#{carouselView.selectedHotelTha.nuitee}€" />
+
+									<p:outputLabel for="rangeTha" value="Range Selection:" />
+									<p:datePicker id="rangeTha" selectionMode="range"
+										value="#{calendarView.range}" readonlyInput="true" />
+
+								</p:panelGrid>
+								<p:commandButton value="Reserver" action="reserv" />
+							</p:outputPanel>
+						</p:dialog>
+					</p:tab>
+					
+					
+					
+					
+					
+					<p:tab title="Grèce">
+						<p:carousel value="#{carouselView.hotelsGre}"
+							headerText="Hotel Grec" var="hotelsGre"
+							itemStyle="text-align:center" responsive="true" style="background-color: #D7E6BB">
+							<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
+								columnClasses="label,value" layout="grid"
+								styleClass="ui-panelgrid-blank">
+
+								<f:facet name="header">
+									<p:graphicImage name="images/#{hotelsGre.nuitee}Gre.jpg"
+										width="250px" height="300px" />
+								</f:facet>
+								<h:outputText value="Nom: " />
+								<h:outputText value="#{hotelsGre.nomHotel}" />
+
+								<h:outputText value="Etoiles: " />
+								<h:outputText value="#{hotelsGre.etoile}" />
+
+								<h:outputText value="   " />	
+								<p:commandButton update=":formReservation"
+									action="#{carouselView.bingoGre()}" value='Voir les details'
+									oncomplete="PF('hotelGreDialog').show()">
+									<f:setPropertyActionListener value="#{hotelsGre}"
+										target="#{carouselView.selectedHotelGre}" />
+								</p:commandButton>
+
+
+							</p:panelGrid>
+
+						</p:carousel>
+
+
+						<p:dialog header="Hotel Grec Info" widgetVar="hotelGreDialog"
+							id="hotelGreDialog" modal="true" showEffect="fade"
+							hideEffect="fade" resizable="true" height="200">
+							<p:outputPanel id="hotelGreDetail" style="text-align:center;">
+								<p:panelGrid columns="2" columnClasses="label,value">
+
+
+									<h:outputText value="Nom:" />
+									<h:outputText value="#{carouselView.selectedHotelGre.nomHotel}" />
+
+									<h:outputText value="Year" />
+									<h:outputText value="#{carouselView.selectedHotelGre.nuitee}€" />
+
+									<p:outputLabel for="rangeGre" value="Range Selection:" />
+									<p:datePicker id="rangeGre" selectionMode="range"
+										value="#{calendarView.range}" readonlyInput="true" />
+
+								</p:panelGrid>
+								<p:commandButton value="Reserver" action="reserv" />
+							</p:outputPanel>
+						</p:dialog>
+					</p:tab>
+					
+					
+					
+					
+					
+					<p:tab title="Ethiopie">
+						<p:carousel value="#{carouselView.hotelsEth}"
+							headerText="Hotel Ethiopien" var="hotelsEth"
+							itemStyle="text-align:center" responsive="true"  style="background-color: #D7E6BB">
+							<p:panelGrid columns="2" style="width:100%;margin:10px 0px"
+								columnClasses="label,value" layout="grid"
+								styleClass="ui-panelgrid-blank">
+
+								<f:facet name="header">
+									<p:graphicImage name="images/#{hotelsEth.nuitee}Eth.jpg"
+										width="250px" height="300px" />
+								</f:facet>
+								<h:outputText value="Nom: " />
+								<h:outputText value="#{hotelsEth.nomHotel}" />
+
+								<h:outputText value="Etoiles: " />
+								<h:outputText value="#{hotelsEth.etoile}" />
+								
+								
+								<h:outputText value="   " />	
+								<p:commandButton update=":formReservation"
+									action="#{carouselView.bingoEth()}" value='Voir les details'
+									oncomplete="PF('hotelEthDialog').show()">
+									<f:setPropertyActionListener value="#{hotelsEth}"
+										target="#{carouselView.selectedHotelEth}" />
+								</p:commandButton>
+
+
+							</p:panelGrid>
+
+						</p:carousel>
+
+
+						<p:dialog header="Hotel Ethiopien Info" widgetVar="hotelEthDialog"
+							id="hotelEthDialog" modal="true" showEffect="fade"
+							hideEffect="fade" resizable="true" height="200">
+							<p:outputPanel id="hotelEthDetail" style="text-align:center;">
+								<p:panelGrid columns="2" columnClasses="label,value">
+
+
+									<h:outputText value="Nom:" />
+									<h:outputText value="#{carouselView.selectedHotelEth.nomHotel}" />
+
+									<h:outputText value="Year" />
+									<h:outputText value="#{carouselView.selectedHotelEth.nuitee}€" />
+
+									<p:outputLabel for="rangeEth" value="Range Selection:" />
+									<p:datePicker id="rangeEth" selectionMode="range"
+										value="#{calendarView.range}" readonlyInput="true" />
+
+								</p:panelGrid>
+								<p:commandButton value="Reserver" action="reserv" />
+							</p:outputPanel>
+						</p:dialog>
+
+					</p:tab>
+				</p:tabView>
+			</h:form>
+
+		</ui:define>
+	</ui:decorate>
+
+</h:body>
+</html>
